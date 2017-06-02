@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- custom styles from here on -->
+    <style name="ReactionIcon">
+        <item name="android:layout_width">@dimen/reactionWidth</item>
+        <item name="android:layout_height">@dimen/reactionWidth</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="ReactionCount" parent="ReactionIcon">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorSecondary</item>
+    </style>
+
 </resources>
