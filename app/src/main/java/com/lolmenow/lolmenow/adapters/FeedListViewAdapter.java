@@ -20,6 +20,7 @@ import java.util.List;
 
 import com.lolmenow.lolmenow.R;
 import com.lolmenow.lolmenow.models.Post;
+import com.lolmenow.lolmenow.models.Reaction;
 import com.squareup.picasso.Picasso;
 
 
@@ -42,7 +43,7 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
@@ -59,20 +60,21 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
         TextView wowCount = (TextView) holder.reactionCounts.findViewById(R.id.wowCount);
         TextView clapCount = (TextView) holder.reactionCounts.findViewById(R.id.clapCount);
 
-        lolCount.setText(postList.get(position).getData().getReaction().getLol());
-        xdCount.setText(postList.get(position).getData().getReaction().getXd());
-        wowCount.setText(postList.get(position).getData().getReaction().getWow());
-        clapCount.setText(postList.get(position).getData().getReaction().getClaps());
+        Reaction reaction = postList.get(position).getData().getReaction();
 
-        holder.reactionCounts.getLayoutParams().height = 0;
+        lolCount.setText(reaction.getLol().toString());
+        xdCount.setText(reaction.getXd().toString());
+        wowCount.setText(reaction.getWow().toString());
+        clapCount.setText(reaction.getClaps().toString());
+
+        holder.reactionCounts.setAlpha(0);
 
         holder.reactionImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "clicked");
-
-
-
+                holder.reactionCounts.animate().alpha(1);
+                holder.reactionImages.setAlpha((float) 0.5);
             }
         });
 
