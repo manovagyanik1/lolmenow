@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "984607124291",
+    "firebase_url": "https://juice-6b249.firebaseio.com",
+    "project_id": "juice-6b249",
+    "storage_bucket": "juice-6b249.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984607124291:android:9fe025351c678a8c",
+        "android_client_info": {
+          "package_name": "com.lolmenow.lolmenow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984607124291-1rdqneqjk6f0o7js8uqa2uq27gcn25t7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ2yfXLvd7Q2ArLvX0CLlHBWuvRfRoyDI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
