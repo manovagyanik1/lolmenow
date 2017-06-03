@@ -1,5 +1,6 @@
 package com.lolmenow.lolmenow.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,24 +41,27 @@ public class FeedActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final AppCompatActivity that = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed_screen);
+        arrayList = new ArrayList<Post>();
 
         mDatabase = FirebaseDatabase.getInstance().getReference("feed");
         feedListView = (ListView) findViewById(R.id.feed_list_view);
-        setListData();
 
-        adapter = new FeedListViewAdapter(this, R.layout.post, arrayList);
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Long value = dataSnapshot.getChildrenCount();
-                GenericTypeIndicator<List<Post>> t = new GenericTypeIndicator<List<Post>>() {};
+                GenericTypeIndicator<ArrayList<Post>> t = new GenericTypeIndicator<ArrayList<Post>>() {};
                 try{
-                    List<Post> posts = dataSnapshot.getValue(t);
+                    arrayList = dataSnapshot.getValue(t);
                 } catch (Exception e){
-                    Log.d(TAG, e.getCause().toString());
+                    Log.e(TAG, e.getCause().toString());
                 }
+
+                // TODO: see if we need to do this.
+                adapter = new FeedListViewAdapter(that, R.layout.post, arrayList);
+                feedListView.setAdapter(adapter);
             }
 
             @Override
@@ -67,34 +71,5 @@ public class FeedActivity extends AppCompatActivity {
         };
 
         mDatabase.addValueEventListener(postListener);
-        feedListView.setAdapter(adapter);
-    }
-
-    private void setListData() {
-        arrayList = new ArrayList<>();
-        Reaction reaction = Reaction.builder().rofl(new Integer(5))
-                .xd(5)
-                .wow(899)
-                .claps(89)
-                .build();
-        Share share = Share.builder().shareCount(89).shareUrl("https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-9/18767780_134603470430819_685348563835972705_n.jpg?oh=b7b3fb241586d58d4f1dac4076ed3fee&oe=599BB1F0").build();
-
-        Post post = Post.builder().mediaUrl("https://scontent.fmaa1-1.fna.fbcdn.net/v/t1.0-9/18767780_134603470430819_685348563835972705_n.jpg?oh=b7b3fb241586d58d4f1dac4076ed3fee&oe=599BB1F0")
-                .share(share)
-                .reaction(reaction)
-                .build();
-
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-        arrayList.add(post);
-
     }
 }

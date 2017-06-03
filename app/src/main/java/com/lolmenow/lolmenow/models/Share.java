@@ -1,43 +1,38 @@
 package com.lolmenow.lolmenow.models;
 
-import com.google.auto.value.AutoValue;
-import com.google.firebase.database.DataSnapshot;
-
-import java.net.URL;
-
-import me.mattlogan.auto.value.firebase.annotation.FirebaseValue;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
  * Created by shubhamagrawal on 02/06/17.
  */
 
-@AutoValue
-@FirebaseValue
-public abstract class Share {
-    public abstract String shareUrl();
-    public abstract Integer shareCount();
+@IgnoreExtraProperties
+public class Share {
+    public String shareUrl;
+    public Integer shareCount;
 
-    public static Builder builder() {
-        return new AutoValue_Share.Builder();
+    public Share(String shareUrl, Integer shareCount) {
+        this.shareUrl = shareUrl;
+        this.shareCount = shareCount;
     }
 
-
-    public static Share create(DataSnapshot ds){
-        return ds.getValue(AutoValue_Share.FirebaseValue.class).toAutoValue();
+    public Share() {
     }
 
-    public Object toFirebaseValue(){
-        return new AutoValue_Share.FirebaseValue(this);
+    public String getShareUrl() {
+        return shareUrl;
     }
 
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
 
-    @AutoValue.Builder
-    public abstract static class Builder {
-        public abstract Builder shareUrl(String shareUrl);
+    public Integer getShareCount() {
+        return shareCount;
+    }
 
-        public abstract Builder shareCount(Integer shareCount);
-
-        public abstract Share build();
+    public void setShareCount(Integer shareCount) {
+        this.shareCount = shareCount;
     }
 }
 

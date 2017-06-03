@@ -6,6 +6,7 @@ package com.lolmenow.lolmenow.adapters;
 
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import com.lolmenow.lolmenow.R;
@@ -24,8 +27,9 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
 
     private AppCompatActivity activity;
     private List<Post> postList;
+    private static final String TAG = FeedListViewAdapter.class.getSimpleName();
 
-    public FeedListViewAdapter(AppCompatActivity context, int resource, List<Post> objects) {
+    public FeedListViewAdapter(AppCompatActivity context, int resource, ArrayList<Post> objects) {
         super(context, resource, objects);
         this.activity = context;
         this.postList = objects;
@@ -50,15 +54,30 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        TextView lolCount = (TextView) holder.reactionCounts.findViewById(R.id.lolCount);
+        TextView xdCount = (TextView) holder.reactionCounts.findViewById(R.id.xdCount);
+        TextView wowCount = (TextView) holder.reactionCounts.findViewById(R.id.wowCount);
+        TextView clapCount = (TextView) holder.reactionCounts.findViewById(R.id.clapCount);
+
+        lolCount.setText(postList.get(position).getData().getReaction().getLol());
+        xdCount.setText(postList.get(position).getData().getReaction().getXd());
+        wowCount.setText(postList.get(position).getData().getReaction().getWow());
+        clapCount.setText(postList.get(position).getData().getReaction().getClaps());
+
+        holder.reactionCounts.getLayoutParams().height = 0;
+
         holder.reactionImages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "clicked");
+
+
 
             }
         });
 
         Picasso.with(activity)
-                .load(postList.get(position).mediaUrl())
+                .load(postList.get(position).getData().getMediaUrl())
                 .into(holder.imageView);
 
         return convertView;

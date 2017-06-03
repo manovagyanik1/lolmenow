@@ -1,54 +1,58 @@
 package com.lolmenow.lolmenow.models;
 
-import com.google.auto.value.AutoValue;
-import com.google.firebase.database.DataSnapshot;
 
-import me.mattlogan.auto.value.firebase.annotation.FirebaseValue;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
  * Created by shubhamagrawal on 02/06/17.
  */
 
-@AutoValue
-@FirebaseValue
-public abstract class Reaction{
-    public abstract Integer rofl();
-    public abstract Integer xd();
-    public abstract Integer wow();
-    public abstract Integer claps();
+@IgnoreExtraProperties
+public  class Reaction{
+    public Integer lol;
+    public Integer xd;
+    public Integer wow;
+    public Integer claps;
 
-    public static Reaction create(Integer rofl, Integer xd, Integer wow, Integer claps) {
-        return builder()
-                .rofl(rofl)
-                .xd(xd)
-                .wow(wow)
-                .claps(claps)
-                .build();
+    public Reaction(Integer lol, Integer xd, Integer wow, Integer claps) {
+        this.lol = lol;
+        this.xd = xd;
+        this.wow = wow;
+        this.claps = claps;
     }
 
-
-    public static Reaction create(DataSnapshot ds){
-        return ds.getValue(AutoValue_Reaction.FirebaseValue.class).toAutoValue();
+    public Reaction() {
     }
 
-    public Object toFirebaseValue(){
-        return new AutoValue_Reaction.FirebaseValue(this);
+    public Integer getLol() {
+        return lol;
     }
 
-    public static Builder builder() {
-        return new AutoValue_Reaction.Builder();
+    public void setLol(Integer lol) {
+        this.lol = lol;
     }
 
-    @AutoValue.Builder
-    public abstract static class Builder {
-        public abstract Builder rofl(Integer rofl);
+    public Integer getXd() {
+        return xd;
+    }
 
-        public abstract Builder xd(Integer xd);
+    public void setXd(Integer xd) {
+        this.xd = xd;
+    }
 
-        public abstract Builder wow(Integer wow);
+    public Integer getWow() {
+        return wow;
+    }
 
-        public abstract Builder claps(Integer claps);
+    public void setWow(Integer wow) {
+        this.wow = wow;
+    }
 
-        public abstract Reaction build();
+    public Integer getClaps() {
+        return claps;
+    }
+
+    public void setClaps(Integer claps) {
+        this.claps = claps;
     }
 }
