@@ -5,11 +5,15 @@ package com.lolmenow.lolmenow.adapters;
  */
 
 import android.app.Activity;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lolmenow.lolmenow.MyApplication;
 import com.lolmenow.lolmenow.R;
 import com.lolmenow.lolmenow.activities.FeedActivity;
 import com.lolmenow.lolmenow.models.Post;
@@ -46,11 +51,13 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
             this.holder = viewHolder;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View v) {
             holder.reactionCounts.animate().alpha(1);
-            holder.reactionImages.setAlpha((float) 0.5);
-
+            Animation animation = AnimationUtils.loadAnimation(MyApplication.getAppContext(),
+                    R.anim.zoom_out_in);
+            v.startAnimation(animation);
             // update the data in firebase
             switch (v.getId()){
                 case R.id.lolImage: {
@@ -116,7 +123,7 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
         holder.clapImage.setOnClickListener(reactionClickListener);
 
         } catch (Exception e){
-            Log.e(TAG, e.getCause().toString());
+            Log.e(TAG, e.getMessage());
         }
         final View view = convertView;
         convertView.setAlpha(0);
