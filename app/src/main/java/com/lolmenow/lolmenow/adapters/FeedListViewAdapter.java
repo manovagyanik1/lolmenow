@@ -77,12 +77,6 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
 
     @Override
     public Post getItem(int position) {
-
-        if (position + Constants.FETCH_OFFSET > postList.size()){
-            FeedActivity feedActivity = (FeedActivity) activity;
-            feedActivity.getMoreData();
-        }
-
         return postList.get(position);
     }
 
@@ -104,6 +98,9 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        try{
+
+
         Reaction reaction = postList.get(position).getData().getReaction();
         holder.lolCount.setText(reaction.getLol().toString());
         holder.xdCount.setText(reaction.getXd().toString());
@@ -117,6 +114,10 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
         holder.xdImage.setOnClickListener(reactionClickListener);
         holder.wowImage.setOnClickListener(reactionClickListener);
         holder.clapImage.setOnClickListener(reactionClickListener);
+
+        } catch (Exception e){
+            Log.e(TAG, e.getCause().toString());
+        }
         final View view = convertView;
         convertView.setAlpha(0);
 
@@ -134,6 +135,10 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
                     }
                 });
 
+        if (position + Constants.FETCH_OFFSET > postList.size()){
+            FeedActivity feedActivity = (FeedActivity) activity;
+            feedActivity.getMoreData();
+        }
         return convertView;
     }
 

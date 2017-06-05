@@ -41,6 +41,7 @@ public class FeedActivity extends AppCompatActivity {
     private ArrayAdapter<Post> adapter;
     private ArrayList<Post> arrayList;
     private ValueEventListener postListener;
+    private boolean loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed_screen);
         arrayList = new ArrayList<>();
+        loading = false;
 
         mDatabase = FirebaseDatabase.getInstance().getReference("feed");
         feedListView = (ListView) findViewById(R.id.feed_list_view);
@@ -58,14 +60,17 @@ public class FeedActivity extends AppCompatActivity {
                 Log.d(TAG, "onDataChange called");
                 GenericTypeIndicator<ArrayList<Post>> t = new GenericTypeIndicator<ArrayList<Post>>() {};
                 try{
-                    arrayList.addAll(dataSnapshot.getValue(t));
+                    ArrayList<Post> newPostList = dataSnapshot.getValue(t);
+                    arrayList.addAll(newPostList.subList(arrayList.size(), newPostList.size()));
                 } catch (Exception e){
                     Log.e(TAG, e.getCause().toString());
                 }
+                loading = false;
 
                 // TODO: see if we need to do this.
                 adapter = new FeedListViewAdapter(that, R.layout.post, arrayList);
                 feedListView.setAdapter(adapter);
+
             }
 
             @Override
@@ -78,7 +83,10 @@ public class FeedActivity extends AppCompatActivity {
 
     public void getMoreData() {
         Log.d(TAG, "getting more data");
-        Query query = mDatabase.orderByKey().limitToFirst(Constants.FETCH_FEED_POSTS_SIZE).startAt(arrayList.size()+"");
-        query.addListenerForSingleValueEvent(postListener);
+        if(!loading){
+            Query query = mDatabase.orderByKey().limitToFirst(Constants.FETCH_FEED_POSTS_SIZE).startAt(arrayList.size()+"");
+            loading = true;
+            query.addListenerForSingleValueEvent(postListener);
+        }
     }
 }

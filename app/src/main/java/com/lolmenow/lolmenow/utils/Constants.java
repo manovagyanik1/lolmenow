@@ -21,7 +21,7 @@ public class Constants {
     public static final String TIMEZONE = "timezone";
 
     // constants for feed posts fetch.
-    public static final Integer FETCH_FEED_POSTS_SIZE = 10;
-    public static final Integer FETCH_OFFSET = 5;
+    public static final Integer FETCH_FEED_POSTS_SIZE = 20;
+    public static final Integer FETCH_OFFSET = 10;
 
 }
