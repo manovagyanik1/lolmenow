@@ -104,10 +104,23 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
         holder.xdImage.setOnClickListener(reactionClickListener);
         holder.wowImage.setOnClickListener(reactionClickListener);
         holder.clapImage.setOnClickListener(reactionClickListener);
+        final View view = convertView;
+        convertView.setAlpha(0);
 
         Picasso.with(activity)
                 .load(postList.get(position).getData().getMediaUrl())
-                .into(holder.imageView);
+                .into(holder.imageView, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        //do smth when picture is loaded successfully
+                        view.setAlpha(1);
+                    }
+
+                    @Override
+                    public void onError() {
+                        //do smth when there is picture loading error
+                    }
+                });
         return convertView;
     }
 
