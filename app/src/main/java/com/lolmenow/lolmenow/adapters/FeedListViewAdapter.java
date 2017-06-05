@@ -19,8 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lolmenow.lolmenow.R;
+import com.lolmenow.lolmenow.activities.FeedActivity;
 import com.lolmenow.lolmenow.models.Post;
 import com.lolmenow.lolmenow.models.Reaction;
+import com.lolmenow.lolmenow.utils.Constants;
 import com.squareup.picasso.Picasso;
 
 
@@ -75,7 +77,18 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
 
     @Override
     public Post getItem(int position) {
+
+        if (position + Constants.FETCH_OFFSET > postList.size()){
+            FeedActivity feedActivity = (FeedActivity) activity;
+            feedActivity.getMoreData();
+        }
+
         return postList.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return postList.size();
     }
 
     @Override
@@ -107,20 +120,20 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
         final View view = convertView;
         convertView.setAlpha(0);
 
+        // TODO: Ranji: scroll behaviour issue: user is scrolling up the feed and is not aware of post skip
         Picasso.with(activity)
                 .load(postList.get(position).getData().getMediaUrl())
                 .into(holder.imageView, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
-                        //do smth when picture is loaded successfully
                         view.setAlpha(1);
                     }
 
                     @Override
                     public void onError() {
-                        //do smth when there is picture loading error
                     }
                 });
+
         return convertView;
     }
 

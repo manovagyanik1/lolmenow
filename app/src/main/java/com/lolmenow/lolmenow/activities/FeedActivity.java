@@ -17,12 +17,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.lolmenow.lolmenow.R;
 import com.lolmenow.lolmenow.adapters.FeedListViewAdapter;
 import com.lolmenow.lolmenow.models.Post;
 import com.lolmenow.lolmenow.models.Reaction;
 import com.lolmenow.lolmenow.models.Share;
+import com.lolmenow.lolmenow.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,23 +40,25 @@ public class FeedActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private ArrayAdapter<Post> adapter;
     private ArrayList<Post> arrayList;
+    private ValueEventListener postListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final AppCompatActivity that = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feed_screen);
-        arrayList = new ArrayList<Post>();
+        arrayList = new ArrayList<>();
 
         mDatabase = FirebaseDatabase.getInstance().getReference("feed");
         feedListView = (ListView) findViewById(R.id.feed_list_view);
 
-        ValueEventListener postListener = new ValueEventListener() {
+        postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange called");
                 GenericTypeIndicator<ArrayList<Post>> t = new GenericTypeIndicator<ArrayList<Post>>() {};
                 try{
-                    arrayList = dataSnapshot.getValue(t);
+                    arrayList.addAll(dataSnapshot.getValue(t));
                 } catch (Exception e){
                     Log.e(TAG, e.getCause().toString());
                 }
@@ -69,7 +73,12 @@ public class FeedActivity extends AppCompatActivity {
                 Log.d(TAG, databaseError.getDetails());
             }
         };
+        getMoreData();
+    }
 
-        mDatabase.addValueEventListener(postListener);
+    public void getMoreData() {
+        Log.d(TAG, "getting more data");
+        Query query = mDatabase.orderByKey().limitToFirst(Constants.FETCH_FEED_POSTS_SIZE).startAt(arrayList.size()+"");
+        query.addListenerForSingleValueEvent(postListener);
     }
 }

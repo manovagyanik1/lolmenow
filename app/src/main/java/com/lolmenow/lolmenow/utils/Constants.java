@@ -19,4 +19,9 @@ public class Constants {
     public static final String FORCE_UPDATE = "force_update";
     public static final String BUILD_VERSION = "build_version";
     public static final String TIMEZONE = "timezone";
+
+    // constants for feed posts fetch.
+    public static final Integer FETCH_FEED_POSTS_SIZE = 10;
+    public static final Integer FETCH_OFFSET = 5;
+
 }
