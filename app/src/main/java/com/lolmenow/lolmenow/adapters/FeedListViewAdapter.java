@@ -24,7 +24,7 @@ import com.lolmenow.lolmenow.models.Reaction;
 import com.squareup.picasso.Picasso;
 
 
-public class FeedListViewAdapter extends ArrayAdapter<Post> {
+public class FeedListViewAdapter extends ArrayAdapter<Post>  {
 
     private AppCompatActivity activity;
     private List<Post> postList;
@@ -36,6 +36,43 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
         this.postList = objects;
     }
 
+    private class ReactionClickListenter implements View.OnClickListener{
+
+        private ViewHolder holder;
+
+        public ReactionClickListenter(ViewHolder viewHolder) {
+            this.holder = viewHolder;
+        }
+
+        @Override
+        public void onClick(View v) {
+            holder.reactionCounts.animate().alpha(1);
+            holder.reactionImages.setAlpha((float) 0.5);
+
+            // update the data in firebase
+            switch (v.getId()){
+                case R.id.lolImage: {
+
+                    break;
+                }
+                case R.id.xdImage: {
+
+                    break;
+                }
+                case R.id.wowImage: {
+
+                    break;
+                }
+                case R.id.clapImage: {
+
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+    }
+
     @Override
     public Post getItem(int position) {
         return postList.get(position);
@@ -45,7 +82,6 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.post, parent, false);
             holder = new ViewHolder(convertView);
@@ -55,33 +91,23 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        TextView lolCount = (TextView) holder.reactionCounts.findViewById(R.id.lolCount);
-        TextView xdCount = (TextView) holder.reactionCounts.findViewById(R.id.xdCount);
-        TextView wowCount = (TextView) holder.reactionCounts.findViewById(R.id.wowCount);
-        TextView clapCount = (TextView) holder.reactionCounts.findViewById(R.id.clapCount);
-
         Reaction reaction = postList.get(position).getData().getReaction();
-
-        lolCount.setText(reaction.getLol().toString());
-        xdCount.setText(reaction.getXd().toString());
-        wowCount.setText(reaction.getWow().toString());
-        clapCount.setText(reaction.getClaps().toString());
+        holder.lolCount.setText(reaction.getLol().toString());
+        holder.xdCount.setText(reaction.getXd().toString());
+        holder.wowCount.setText(reaction.getWow().toString());
+        holder.clapCount.setText(reaction.getClaps().toString());
 
         holder.reactionCounts.setAlpha(0);
+        ReactionClickListenter reactionClickListener = new ReactionClickListenter(holder);
 
-        holder.reactionImages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "clicked");
-                holder.reactionCounts.animate().alpha(1);
-                holder.reactionImages.setAlpha((float) 0.5);
-            }
-        });
+        holder.lolImage.setOnClickListener(reactionClickListener);
+        holder.xdImage.setOnClickListener(reactionClickListener);
+        holder.wowImage.setOnClickListener(reactionClickListener);
+        holder.clapImage.setOnClickListener(reactionClickListener);
 
         Picasso.with(activity)
                 .load(postList.get(position).getData().getMediaUrl())
                 .into(holder.imageView);
-
         return convertView;
     }
 
@@ -90,10 +116,30 @@ public class FeedListViewAdapter extends ArrayAdapter<Post> {
         private LinearLayout reactionImages;
         private LinearLayout reactionCounts;
 
+        private ImageView lolImage;
+        private ImageView xdImage;
+        private ImageView wowImage;
+        private ImageView clapImage;
+        private TextView lolCount;
+        private TextView xdCount;
+        private TextView wowCount;
+
+        private TextView clapCount;
+
         public ViewHolder(View view) {
             imageView = (ImageView) view.findViewById(R.id.post_image);
             reactionImages = (LinearLayout) view.findViewById(R.id.reaction_images);
             reactionCounts = (LinearLayout) view.findViewById(R.id.reaction_counts);
+
+            lolImage = (ImageView) reactionImages.findViewById(R.id.lolImage);
+            xdImage = (ImageView) reactionImages.findViewById(R.id.xdImage);
+            wowImage = (ImageView) reactionImages.findViewById(R.id.wowImage);
+            clapImage = (ImageView) reactionImages.findViewById(R.id.clapImage);
+
+            lolCount = (TextView) reactionCounts.findViewById(R.id.lolCount);
+            xdCount = (TextView) reactionCounts.findViewById(R.id.xdCount);
+            wowCount = (TextView) reactionCounts.findViewById(R.id.wowCount);
+            clapCount = (TextView) reactionCounts.findViewById(R.id.clapCount);
         }
     }
 }
