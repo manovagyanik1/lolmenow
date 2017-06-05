@@ -27,6 +27,7 @@ import com.lolmenow.lolmenow.models.Share;
 import com.lolmenow.lolmenow.utils.Constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -54,23 +55,30 @@ public class FeedActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("feed");
         feedListView = (ListView) findViewById(R.id.feed_list_view);
 
+        adapter = new FeedListViewAdapter(that, R.layout.post, arrayList);
+        feedListView.setAdapter(adapter);
+
         postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d(TAG, "onDataChange called");
-                GenericTypeIndicator<ArrayList<Post>> t = new GenericTypeIndicator<ArrayList<Post>>() {};
+                GenericTypeIndicator<List<Post>> t = new GenericTypeIndicator<List<Post>>() {};
                 try{
-                    ArrayList<Post> newPostList = dataSnapshot.getValue(t);
+                    List<Post> newPostList = dataSnapshot.getValue(t);
                     arrayList.addAll(newPostList.subList(arrayList.size(), newPostList.size()));
                 } catch (Exception e){
-                    Log.e(TAG, e.getCause().toString());
+                    Log.e(TAG, e.getMessage().toString());
+
+                    GenericTypeIndicator<HashMap<String, Post>> t2 = new GenericTypeIndicator<HashMap<String, Post>>() {};
+                    HashMap<String, Post> newPostMap = dataSnapshot.getValue(t2);
+                    Log.d(TAG, newPostMap.toString());
+
+                    for (Post post : newPostMap.values()) {
+                        arrayList.add(post);
+                    }
                 }
                 loading = false;
-
-                // TODO: see if we need to do this.
-                adapter = new FeedListViewAdapter(that, R.layout.post, arrayList);
-                feedListView.setAdapter(adapter);
-
+                adapter.notifyDataSetChanged();
             }
 
             @Override
