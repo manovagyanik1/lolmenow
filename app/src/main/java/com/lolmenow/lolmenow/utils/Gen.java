@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -42,6 +43,7 @@ public class Gen {
     public static final String RINGING_NOTIFICATION = "RINGING NOTIFICATION";
     private static Activity activity = null;
     private static Boolean appActive = false;
+    private static MediaPlayer mediaPlayer;
 
     public static void toast(String text) {
         Toast.makeText(MyApplication.getAppContext(), text, Toast.LENGTH_SHORT).show();
@@ -285,6 +287,14 @@ public class Gen {
             Gen.showError(e);
             return null;
         }
+    }
 
+    public static void playSound(Integer soundId) {
+        if(mediaPlayer != null && mediaPlayer.isPlaying()){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+        mediaPlayer = MediaPlayer.create(MyApplication.getAppContext(), soundId);
+        mediaPlayer.start();
     }
 }

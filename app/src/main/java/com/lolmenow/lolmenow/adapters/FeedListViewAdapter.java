@@ -28,6 +28,7 @@ import com.lolmenow.lolmenow.activities.FeedActivity;
 import com.lolmenow.lolmenow.models.Post;
 import com.lolmenow.lolmenow.models.Reaction;
 import com.lolmenow.lolmenow.utils.Constants;
+import com.lolmenow.lolmenow.utils.Gen;
 import com.squareup.picasso.Picasso;
 
 
@@ -61,19 +62,19 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
             // update the data in firebase
             switch (v.getId()){
                 case R.id.lolImage: {
-
+                    Gen.playSound(R.raw.lol);
                     break;
                 }
                 case R.id.xdImage: {
-
+                    Gen.playSound(R.raw.xd);
                     break;
                 }
                 case R.id.wowImage: {
-
+                    Gen.playSound(R.raw.wow);
                     break;
                 }
                 case R.id.clapImage: {
-
+                    Gen.playSound(R.raw.clap);
                     break;
                 }
                 default:
