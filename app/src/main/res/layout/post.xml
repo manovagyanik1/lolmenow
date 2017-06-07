@@ -1,118 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:clipChildren="false"
-    android:clipToPadding="false"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/color100">
+    android:background="@color/color100"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/marginSmall"
-        app:cardCornerRadius="4dp"
         app:cardBackgroundColor="@color/color400"
-        >
+        app:cardCornerRadius="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipChildren="false"
-            android:clipToPadding="false"
-            >
+            android:clipToPadding="false">
 
-    <ImageView
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:adjustViewBounds="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/post_image"
-        android:src="@mipmap/img_placeholder"/>
+            <uk.co.senab.photoview.PhotoView
+                android:id="@+id/post_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/img_placeholder" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:background="@color/color400"
-        android:id="@+id/reaction_counts"
-        android:layout_marginBottom="@dimen/marginSmall"
-        android:layout_below="@+id/reaction_images"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/ReactionCount"
-            android:id="@+id/lolCount"
-            android:text="328"
-            android:src="@mipmap/lol"/>
-        <TextView
-            style="@style/ReactionCount"
-            android:text="345"
-            android:id="@+id/xdCount"
-            android:src="@mipmap/xd"/>
-        <TextView
-            style="@style/ReactionCount"
-            android:text="664"
-            android:id="@+id/wowCount"
-            android:src="@mipmap/wow"/>
-        <TextView
-            style="@style/ReactionCount"
-            android:text="234"
-            android:id="@+id/clapCount"
-            android:src="@mipmap/clap"/>
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-        <TextView
-            style="@style/ReactionCount"
-            android:text="234"
-            android:id="@+id/shareCount"
-            android:src="@mipmap/share"/>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/reaction_counts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reaction_images"
+                android:layout_marginBottom="@dimen/marginSmall"
+                android:background="@color/color400"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lolCount"
+                    style="@style/ReactionCount"
+                    android:text="328" />
+
+                <TextView
+                    android:id="@+id/xdCount"
+                    style="@style/ReactionCount"
+                    android:text="345" />
+
+                <TextView
+                    android:id="@+id/wowCount"
+                    style="@style/ReactionCount"
+                    android:text="664" />
+
+                <TextView
+                    android:id="@+id/clapCount"
+                    style="@style/ReactionCount"
+                    android:text="234" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4" />
+
+                <TextView
+                    android:id="@+id/commentCount"
+                    style="@style/ReactionCount"
+                    android:text="16" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/shareCount"
+                    style="@style/ReactionCount"
+                    android:src="@mipmap/share"
+                    android:text="234" />
+            </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:background="@color/color400"
-        android:layout_below="@+id/post_image"
-        android:layout_marginTop="@dimen/marginSmall"
-        android:id="@+id/reaction_images"
-        android:orientation="horizontal">
-        <ImageView
-            style="@style/ReactionIcon"
-            android:id="@+id/lolImage"
-            android:src="@mipmap/lol"/>
-        <ImageView
-            style="@style/ReactionIcon"
-            android:id="@+id/xdImage"
-            android:src="@mipmap/xd"/>
-        <ImageView
-            style="@style/ReactionIcon"
-            android:id="@+id/wowImage"
-            android:src="@mipmap/wow"/>
-        <ImageView
-            style="@style/ReactionIcon"
-            android:id="@+id/clapImage"
-            android:src="@mipmap/clap"/>
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-        <ImageView
-            style="@style/ReactionIcon"
-            android:id="@+id/shareImage"
-            android:src="@mipmap/share"/>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/reaction_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/post_image"
+                android:layout_marginTop="@dimen/marginSmall"
+                android:background="@color/color400"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/lolImage"
+                    style="@style/ReactionIcon"
+                    android:src="@mipmap/lol" />
+
+                <ImageView
+                    android:id="@+id/xdImage"
+                    style="@style/ReactionIcon"
+                    android:src="@mipmap/xd" />
+
+                <ImageView
+                    android:id="@+id/wowImage"
+                    style="@style/ReactionIcon"
+                    android:src="@mipmap/wow" />
+
+                <ImageView
+                    android:id="@+id/clapImage"
+                    style="@style/ReactionIcon"
+                    android:src="@mipmap/clap" />
+
+                <android.support.v4.widget.Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4" />
+
+                <ImageView
+                    android:id="@+id/commentImage"
+                    style="@style/ReactionIcon"
+                    android:src="@mipmap/comment" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/shareImage"
+                    style="@style/ReactionIcon"
+                    android:src="@mipmap/share" />
+            </LinearLayout>
 
         </RelativeLayout>
 

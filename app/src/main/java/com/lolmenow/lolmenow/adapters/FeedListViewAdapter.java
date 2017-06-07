@@ -5,6 +5,7 @@ package com.lolmenow.lolmenow.adapters;
  */
 
 import android.app.Activity;
+import android.media.Image;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.lolmenow.lolmenow.MyApplication;
 import com.lolmenow.lolmenow.R;
 import com.lolmenow.lolmenow.activities.FeedActivity;
