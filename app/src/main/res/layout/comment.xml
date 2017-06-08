@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/marginSmall"
+    android:background="@color/white"
+    >
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/profile_photo"
+            android:layout_marginTop="@dimen/marginSmall"
+            android:layout_marginRight="@dimen/marginSmall"
+            android:src="@mipmap/face"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:layout_margin="@dimen/marginSmall">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_name"
+            android:fontFamily="sans-serif"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            style="@style/CommentText"
+            android:text="Shubham Agrawal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_name"
+            android:fontFamily="sans-serif"
+            android:textSize="10dp"
+            android:id="@+id/comment_timestamp"
+            style="@style/CommentText"
+            android:text="57m ago"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/comment_timestamp"
+            android:layout_marginTop="@dimen/marginSmall"
+            android:id="@+id/comment_text"
+            android:fontFamily="sans-serif-mediym"
+            style="@style/CommentText"
+            android:text="Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page."/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/reactions_layout"
+            android:layout_below="@+id/comment_text"
+            android:layout_marginTop="@dimen/marginSmall"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/comment_reply_count"
+                android:text="30 replies"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="@color/darkGray"
+                style="@style/CommentText"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"/>
+
+
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/like_emoji"
+                android:id="@+id/like_emoji"
+                android:layout_gravity="center_vertical"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CommentText"
+                android:id="@+id/comment_like_count"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/marginXSmall"
+                android:textColor="@color/darkGray"
+                android:text="143"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

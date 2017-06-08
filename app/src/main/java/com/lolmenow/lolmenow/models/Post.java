@@ -1,6 +1,4 @@
 package com.lolmenow.lolmenow.models;
-
-
 import com.google.firebase.database.IgnoreExtraProperties;
 
 /**

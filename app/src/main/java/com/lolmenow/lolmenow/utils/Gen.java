@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lolmenow.lolmenow.BuildConfig;
 import com.lolmenow.lolmenow.MyApplication;
 import com.lolmenow.lolmenow.R;
@@ -53,15 +55,15 @@ public class Gen {
         Toast.makeText(MyApplication.getAppContext(), text, Toast.LENGTH_LONG).show();
     }
 
-//    private static ObjectMapper objectMapper;
-//
-//
-//    public static ObjectMapper getObjectMapper() {
-//        if (objectMapper == null) {
-//            objectMapper = new ObjectMapper();
-//        }
-//        return objectMapper;
-//    }
+    private static ObjectMapper objectMapper;
+
+
+    public static ObjectMapper getObjectMapper() {
+        if (objectMapper == null) {
+            objectMapper = new ObjectMapper();
+        }
+        return objectMapper;
+    }
 
     public static String getTimeDiffFromCurrentTime(long seconds) {
         long hour = seconds / 3600;
@@ -92,12 +94,12 @@ public class Gen {
     }
 
     public static String getJSONString(Object obj) {
-//        ObjectMapper mapper = getObjectMapper();
-//        try {
-//            return mapper.writeValueAsString(obj);
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
+        ObjectMapper mapper = getObjectMapper();
+        try {
+            return mapper.writeValueAsString(obj);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
        return null;
     }
 

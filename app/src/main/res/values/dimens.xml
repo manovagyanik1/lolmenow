@@ -2,4 +2,5 @@
 <resources>
     <dimen name="reactionWidth">30dp</dimen>
     <dimen name="marginSmall">8dp</dimen>
+    <dimen name="marginXSmall">4dp</dimen>
 </resources>
