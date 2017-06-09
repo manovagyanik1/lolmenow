@@ -1,2 +1,2 @@
-project.ext.serverUrl = "http://ec2-54-69-125-204.us-west-2.compute.amazonaws.com:8000/fiveapp"
+project.ext.serverUrl = "https://quicknodeserver.herokuapp.com"
 project.ext.appLink = "https://play.google.com/apps/testing/com.spate.in"

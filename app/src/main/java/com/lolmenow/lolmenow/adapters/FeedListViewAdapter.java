@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.lolmenow.lolmenow.MyApplication;
 import com.lolmenow.lolmenow.R;
+import com.lolmenow.lolmenow.activities.CommentActivity;
 import com.lolmenow.lolmenow.activities.FeedActivity;
 import com.lolmenow.lolmenow.models.Post;
 import com.lolmenow.lolmenow.models.Reaction;
@@ -143,6 +144,12 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
                     }
                 });
 
+        holder.commentImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Gen.startActivity(activity, false, CommentActivity.class, Constants.POST_ID, "23");
+            }
+        });
         if (position + Constants.FETCH_OFFSET > postList.size()){
             FeedActivity feedActivity = (FeedActivity) activity;
             feedActivity.getMoreData();
@@ -159,6 +166,7 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
         private ImageView xdImage;
         private ImageView wowImage;
         private ImageView clapImage;
+        private ImageView commentImage;
         private TextView lolCount;
         private TextView xdCount;
         private TextView wowCount;
@@ -174,6 +182,7 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
             xdImage = (ImageView) reactionImages.findViewById(R.id.xdImage);
             wowImage = (ImageView) reactionImages.findViewById(R.id.wowImage);
             clapImage = (ImageView) reactionImages.findViewById(R.id.clapImage);
+            commentImage = (ImageView) reactionImages.findViewById(R.id.commentImage);
 
             lolCount = (TextView) reactionCounts.findViewById(R.id.lolCount);
             xdCount = (TextView) reactionCounts.findViewById(R.id.xdCount);

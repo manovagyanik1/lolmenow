@@ -147,18 +147,6 @@ public class Gen {
         return settings.getString(Constants.SESSION_ID, "");
     }
 
-    public static void saveFiltersToLocalStorage(boolean filters) {
-        SharedPreferences settings = MyApplication.getAppContext().getSharedPreferences(Constants.PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean(Constants.FILTERS, filters);
-        editor.commit();
-    }
-
-    public static Boolean getFiltersFromLocalStorage() {
-        SharedPreferences settings = MyApplication.getAppContext().getSharedPreferences(Constants.PREFS_NAME, 0);
-        return settings.getBoolean(Constants.FILTERS, false);
-    }
-
 
     public static void saveFCMTokenToLocalStorage(String fcmToken) {
         SharedPreferences settings = MyApplication.getAppContext().getSharedPreferences(Constants.PREFS_NAME, 0);

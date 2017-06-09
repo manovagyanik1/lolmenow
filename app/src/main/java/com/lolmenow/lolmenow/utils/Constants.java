@@ -18,6 +18,7 @@ public class Constants {
     public static final String BUILD_VERSION = "build_version";
     public static final String TIMEZONE = "timezone";
     public static final String COMMENT_URL = SERVER_URL + "/comment";
+    public static final String POST_ID = "post_id";
 
     // constants for feed posts fetch.
     public static final Integer FETCH_FEED_POSTS_SIZE = 20;
