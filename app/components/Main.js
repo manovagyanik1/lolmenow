@@ -7,6 +7,7 @@ import FeedScreen from "./FeedScreen";
 import CommentsScreen from "./CommentsScreen";
 import {connect} from "react-redux";
 import {ActionTypes, fetchFeed} from "../actions";
+import {Navigator} from "react-native";
 
 class Main extends Component {
   componentDidMount() {
@@ -15,7 +16,9 @@ class Main extends Component {
 
   render() {
     return (
-      <Router>
+      <Router
+        sceneStyle={{paddingTop: 64}}
+      >
         <Scene key="root">
           <Scene
             key="feed"
