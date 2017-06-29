@@ -4,6 +4,7 @@
 import React from 'react';
 import {Router, Scene} from "react-native-router-flux";
 import FeedScreen from "./FeedScreen";
+import CommentsScreen from "./CommentsScreen";
 
 const Main = () => (
   <Router>
@@ -15,6 +16,13 @@ const Main = () => (
         initial
       />
     </Scene>
+    <Scene
+      key="comments"
+      direction="vertical"
+      component={CommentsScreen}
+      title="Modal"
+      hideNavBar
+    />
   </Router>
 );
 

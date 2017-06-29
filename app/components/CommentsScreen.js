@@ -7,7 +7,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import {Actions} from "react-native-router-flux";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,16 +27,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const FeedScreen = () => (
+const CommentsScreen = () => (
   <View style={styles.container}>
-    <Text style={styles.welcome}>Feed</Text>
-    <Text
-      style={styles.instructions}
-      onPress={() => Actions.comments()} // New Code
-    >
-      Go to comments
-    </Text>
+    <Text style={styles.welcome}>Comments</Text>
   </View>
 );
 
-export default FeedScreen;
+export default CommentsScreen;
