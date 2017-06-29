@@ -14,16 +14,28 @@ public class Comment {
     private Integer numberOfReplies;
     private Timestamp timestamp;
 
+    public Boolean getLikedByUser() {
+        return likedByUser;
+    }
+
+    public void setLikedByUser(Boolean likedByUser) {
+        this.likedByUser = likedByUser;
+    }
+
+    private Boolean likedByUser;
+
+    // also add if the current user liked this joke or not
     public Comment() {
     }
 
-    public Comment(Integer id, String text, Profile profile, Integer numberOfLikes, Integer numberOfReplies, Timestamp timestamp) {
+    public Comment(Integer id, String text, Profile profile, Integer numberOfLikes, Integer numberOfReplies, Timestamp timestamp, Boolean likedByUser) {
         this.id = id;
         this.text = text;
         this.profile = profile;
         this.numberOfLikes = numberOfLikes;
         this.numberOfReplies = numberOfReplies;
         this.timestamp = timestamp;
+        this.likedByUser = likedByUser;
     }
 
     public Integer getId() {

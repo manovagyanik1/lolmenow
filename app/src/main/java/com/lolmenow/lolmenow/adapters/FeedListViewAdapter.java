@@ -127,22 +127,11 @@ public class FeedListViewAdapter extends ArrayAdapter<Post>  {
         } catch (Exception e){
             Log.e(TAG, e.getMessage());
         }
-        final View view = convertView;
-        convertView.setAlpha(0);
 
         // TODO: Ranji: scroll behaviour issue: user is scrolling up the feed and is not aware of post skip
         Picasso.with(activity)
                 .load(postList.get(position).getData().getMediaUrl())
-                .into(holder.imageView, new com.squareup.picasso.Callback() {
-                    @Override
-                    public void onSuccess() {
-                        view.setAlpha(1);
-                    }
-
-                    @Override
-                    public void onError() {
-                    }
-                });
+                .into(holder.imageView);
 
         holder.commentImage.setOnClickListener(new View.OnClickListener() {
             @Override

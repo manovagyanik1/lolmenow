@@ -196,14 +196,14 @@ public class Gen {
         startActivity(intent, clearStack);
     }
 
-    public static void showLoader(Activity activity) {
+    public static void showInWindow(Activity activity, int id, int layout) {
         ViewGroup view = (ViewGroup) activity.getWindow().getDecorView().getRootView();
 
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-        View loader = activity.findViewById(R.id.loading_indicator);
+        View loader = activity.findViewById(id);
         if (loader == null) {
-            inflater.inflate(R.layout.loading_indicator, view, true);
-            loader = activity.findViewById(R.id.loading_indicator);
+            inflater.inflate(layout, view, true);
+            loader = activity.findViewById(id);
         }
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -211,12 +211,24 @@ public class Gen {
         loader.setVisibility(View.VISIBLE);
     }
 
-    public static void hideLoader(Activity activity) {
-        View loader = activity.findViewById(R.id.loading_indicator);
+    public static void hideInWindow(Activity activity, int id) {
+        View loader = activity.findViewById(id);
         if (loader != null) {
             loader.setVisibility(View.GONE);
         }
         activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+    }
+
+    public static void showLoader(Activity activity){
+        showInWindow(activity, R.id.loading_indicator, R.layout.loading_indicator);
+    }
+
+    public static void showLogin(Activity activity){
+
+    }
+
+    public static void hideLoader(Activity activity){
+        hideInWindow(activity, R.id.loading_indicator);
     }
 
     public static void setCurrentForegroundActivity(Activity act){
