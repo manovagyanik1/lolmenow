@@ -8,6 +8,11 @@ import CommentsScreen from "./CommentsScreen";
 import {connect} from "react-redux";
 import {ActionTypes, fetchFeed} from "../actions";
 import {Navigator} from "react-native";
+import {Platform} from "react-native";
+
+const getPadding = () => {
+  return Platform.OS === "ios" ? 64 : 54;
+};
 
 class Main extends Component {
   componentDidMount() {
@@ -17,7 +22,7 @@ class Main extends Component {
   render() {
     return (
       <Router
-        sceneStyle={{paddingTop: 64}}
+        sceneStyle={{paddingTop: getPadding()}}
       >
         <Scene key="root">
           <Scene
@@ -32,7 +37,6 @@ class Main extends Component {
           direction="vertical"
           component={CommentsScreen}
           title="Comments"
-          hideNavBar
         />
       </Router>
     );
