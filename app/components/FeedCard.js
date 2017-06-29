@@ -8,7 +8,7 @@ import {
   Image,
   Text,
   StyleSheet,
-  Dimensions
+  Dimensions, TouchableHighlight
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -34,10 +34,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "#c5c5c5"
   },
-  icon: {
-  },
-  share: {
-  }
+  icon: {},
+  share: {}
 });
 
 class FeedCard extends Component {
@@ -61,13 +59,19 @@ class FeedCard extends Component {
     const {data} = this.props.card;
     const {imgWidth, imgHeight} = this.state;
 
-    const getFooter = () => {
+    const getFooter = (id) => {
       if (imgHeight > 0) {
         return (
           <View style={styles.cardFooter}>
-            <Icon name="heart-o" size={20} color="#000" style={styles.icon}/>
-            <Icon name="comment" size={20} color="#000" style={styles.icon}/>
-            <Icon name="share" size={20} color="#000" style={styles.share}/>
+            <TouchableHighlight onPress={() => this.props.onLikeClick(data.id)}>
+              <Icon name="heart-o" size={20} color="#000" style={styles.icon}/>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => this.props.onCommentClick(data.id)}>
+              <Icon name="comment" size={20} color="#000" style={styles.icon}/>
+            </TouchableHighlight>
+            <TouchableHighlight onPress={() => this.props.onShareClick(data.id)}>
+              <Icon name="share" size={20} color="#000" style={styles.share}/>
+            </TouchableHighlight>
           </View>
         );
       }
@@ -80,14 +84,17 @@ class FeedCard extends Component {
           style={{height: imgHeight, width: imgWidth}}
           defaultSource={require("../img/placeholder.jpg")}>
         </Image>
-        {getFooter()}
+        {getFooter(data.id)}
       </View>
     );
   };
 }
 
 FeedCard.propTypes = {
-  card: PropType.object.isRequired
+  card: PropType.object.isRequired,
+  onCommentClick: PropType.func.isRequired,
+  onLikeClick: PropType.func.isRequired,
+  onShareClick: PropType.func.isRequired,
 };
 
 export default FeedCard;

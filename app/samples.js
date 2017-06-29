@@ -180,3 +180,90 @@ export const feed = {
     previousPageUrl: "/feed?post-id=3&start-id=0&page-size=10"
   }
 };
+
+export const comments = {
+  items: [
+    {
+      id: 34,
+      text: "Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page.",
+      numberOfLikes: 143,
+      numberOfReplies: 30,
+      timestamp: 1496999506452,
+      likedByUser: "true",
+      profile: {
+        id: 13,
+        name: "shubham agrawal",
+        photoUrl: "https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/16999100_1329600697105317_4214138079828744579_n.jpg?oh=1b4c2bada7ca35747632b337c1e06283&oe=59D545A6"
+      }
+    },
+    {
+      id: 34,
+      text: "Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page.",
+      numberOfLikes: 143,
+      numberOfReplies: 30,
+      timestamp: 1496999506452,
+      likedByUser: "false",
+      profile: {
+        id: 13,
+        name: "shubham agrawal",
+        photoUrl: "https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/16999100_1329600697105317_4214138079828744579_n.jpg?oh=1b4c2bada7ca35747632b337c1e06283&oe=59D545A6"
+      }
+    },
+    {
+      id: 34,
+      text: "Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page.",
+      numberOfLikes: 143,
+      numberOfReplies: 30,
+      timestamp: 1496999506452,
+      likedByUser: "false",
+      profile: {
+        id: 13,
+        name: "shubham agrawal",
+        photoUrl: "https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/16999100_1329600697105317_4214138079828744579_n.jpg?oh=1b4c2bada7ca35747632b337c1e06283&oe=59D545A6"
+      }
+    },
+    {
+      id: 34,
+      text: "Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page.",
+      numberOfLikes: 143,
+      numberOfReplies: 30,
+      timestamp: 1496999506452,
+      likedByUser: "true",
+      profile: {
+        id: 13,
+        name: "shubham agrawal",
+        photoUrl: "https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/16999100_1329600697105317_4214138079828744579_n.jpg?oh=1b4c2bada7ca35747632b337c1e06283&oe=59D545A6"
+      }
+    },
+    {
+      id: 34,
+      text: "Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page.",
+      numberOfLikes: 143,
+      numberOfReplies: 30,
+      timestamp: 1496999506452,
+      likedByUser: "false",
+      profile: {
+        id: 13,
+        name: "shubham agrawal",
+        photoUrl: "https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/16999100_1329600697105317_4214138079828744579_n.jpg?oh=1b4c2bada7ca35747632b337c1e06283&oe=59D545A6"
+      }
+    },
+    {
+      id: 34,
+      text: "Worst joke ever read till date. It is a long established fact that a reader will be distracted by the readable content of a page.",
+      numberOfLikes: 143,
+      numberOfReplies: 30,
+      timestamp: 1496999506452,
+      likedByUser: "true",
+      profile: {
+        id: 13,
+        name: "shubham agrawal",
+        photoUrl: "https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-1/p160x160/16999100_1329600697105317_4214138079828744579_n.jpg?oh=1b4c2bada7ca35747632b337c1e06283&oe=59D545A6"
+      }
+    }
+  ],
+  pageInfo: {
+    nextPageUrl: "/comment?post-id=3&start-id=20&page-size=10",
+    previousPageUrl: "/comment?post-id=3&start-id=0&page-size=10"
+  }
+};
