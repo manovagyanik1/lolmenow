@@ -3,10 +3,14 @@
  */
 import React, {Component} from "react";
 import {
+  FlatList,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import CommentCard from "./CommentCard";
+import {connect} from "react-redux";
+import {getComments} from "../reducers/app";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,10 +31,32 @@ const styles = StyleSheet.create({
   },
 });
 
-const CommentsScreen = () => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>Comments</Text>
-  </View>
-);
+let CommentsScreen = ({comments}) => {
+  console.log(comments);
+  return (
+    <FlatList
+      style={styles.list}
+      data={comments}
+      renderItem={({item}) => {
+        return <CommentCard
+          comment={item}
+        />
+      }}
+      keyExtractor={(comment, index) => index}
+    />
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    comments: getComments(state)
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+
+};
+
+CommentsScreen = connect(mapStateToProps)(CommentsScreen);
 
 export default CommentsScreen;
