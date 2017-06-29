@@ -2,18 +2,12 @@
  * Created by madki on 06/05/17.
  */
 import { combineReducers } from 'redux'
-
-const name = (state = "", action) => {
-  switch (action.type) {
-    case "change_name":
-      return action.value;
-    default:
-      return state;
-  }
-};
+import feed from "./feed";
 
 const app = combineReducers({
-  name
+  feed
 });
+
+export const getFeed = (state) => state.feed;
 
 export default app
