@@ -6,12 +6,14 @@ import {
   StyleSheet,
   Text,
   View,
+  FlatList
 } from 'react-native';
 import {Actions} from "react-native-router-flux";
 import {getFeed} from "../reducers/app";
 import * as actions from "../actions";
 import {connect} from "react-redux";
 import PropType from "prop-types";
+import FeedCard from "./FeedCard";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,21 +34,17 @@ const styles = StyleSheet.create({
   },
 });
 
-let FeedScreen = ({ feed, fetchComments }) => {
+let FeedScreen = ({feed, fetchComments}) => {
   console.log(feed);
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Feed</Text>
-      <Text
-        style={styles.instructions}
-        onPress={() => {
-          fetchComments(1);
-          Actions.comments()
-        }} // New Code
-      >
-        Go to comments
-      </Text>
-    </View>
+    <FlatList
+      style={styles.list}
+      data={feed}
+      renderItem={({item}) => {
+        return <FeedCard card={item} />
+      }}
+      keyExtractor={(card, index) => index}
+    />
   );
 };
 

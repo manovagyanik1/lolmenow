@@ -7,7 +7,7 @@ const feed = (prevState = {}, action) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_FEED:
       console.log("receive feed");
-      return action.data;
+      return action.data.items;
     default:
       return prevState;
   }

@@ -10,6 +10,8 @@ import {
 import configureStore from "./app/configureStore";
 import Root from "./app/components/Root";
 
+GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
+
 const store = configureStore();
 const App = () => <Root store={store}/> ;
 

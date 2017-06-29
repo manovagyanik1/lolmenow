@@ -21,7 +21,7 @@ export const fetchFeed = () => (dispatch) => {
     .then(data => {
       dispatch({
         type: ActionTypes.RECEIVE_FEED,
-        data: data.feed
+        data
       })
     })
     .catch(error => dispatch({
