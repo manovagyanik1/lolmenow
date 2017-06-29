@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch"
   },
   name: {
-
+    fontWeight: "bold",
   },
   commentText: {
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    height: 40,
+    height: 20,
   }
 });
 
@@ -51,10 +51,10 @@ const CommentCard = ({comment}) => {
     <View style={styles.container}>
       <Image style={styles.profilePic} source={{uri: comment.profile.photoUrl}}/>
       <View style={styles.commentContainer}>
-        <Text>{comment.profile.name}</Text>
-        <Text>{comment.text}</Text>
+        <Text style={styles.name}>{comment.profile.name}</Text>
+        <Text style={styles.commentText}>{comment.text}</Text>
         <View style={styles.iconsContainer}>
-          <Icon name="heart-o" size={20} color="#000" style={styles.likeIcon}/>
+          <Icon name="heart" size={10} color="#000" style={styles.likeIcon}/>
         </View>
       </View>
     </View>
